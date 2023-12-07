@@ -6,8 +6,8 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
-@Table(name = "TB_CARS")
-@Entity(name = "TB_CARS")
+@Table(name = "cars")
+@Entity(name = "cars")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,22 +18,27 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private String model;
+    private String color;
     private String engine;
-    private Number door;
-    private Boolean gearbox;
+    private Number doors;
+    private String gearbox;
     private String fuel;
     private String dimensions;
     private Number trunk;
-    private Number avgConsumptionCity;
-    private Number avgConsumptionRoad;
+    private String avgConsumptionCity;
+    private String avgConsumptionRoad;
     private Number power;
     private Boolean isRented;
+    private String rentedBy;
     private BigDecimal price;
+    private Number airbag;
+    private String brake;
 
     public Car(CarDTO carDTO) {
         this.model = carDTO.model();
+        this.color = carDTO.color();
         this.engine = carDTO.engine();
-        this.door = carDTO.door();
+        this.doors = carDTO.doors();
         this.gearbox = carDTO.gearbox();
         this.fuel = carDTO.fuel();
         this.dimensions = carDTO.dimensions();
@@ -42,6 +47,9 @@ public class Car {
         this.avgConsumptionRoad = carDTO.avgConsumptionRoad();
         this.power = carDTO.power();
         this.isRented = carDTO.isRented();
+        this.rentedBy = carDTO.rentedBy();
         this.price = carDTO.price();
+        this.airbag = carDTO.airbag();
+        this.brake = carDTO.brake();
     }
 }

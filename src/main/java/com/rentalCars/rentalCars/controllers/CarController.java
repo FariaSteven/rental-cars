@@ -4,6 +4,7 @@ import com.rentalCars.rentalCars.domain.cars.Car;
 import com.rentalCars.rentalCars.domain.cars.dto.CarDTO;
 import com.rentalCars.rentalCars.repositories.CarRepository;
 import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class CarController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getOneCar(@PathVariable(value = "id") UUID id){
+    public ResponseEntity<Object> getOneCar(@PathVariable(value = "id") String id){
         Optional<Car> carO = carRepository.findById(id);
         if(carO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Car not found.");
@@ -41,17 +42,18 @@ public class CarController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity updateCar(@PathVariable(value = "id") UUID id, @RequestBody @Valid CarDTO carDTO) {
+    public ResponseEntity<Object> updateCar(@PathVariable(value = "id") String id, @RequestBody @Valid CarDTO carDTO) {
         Optional<Car> carO = carRepository.findById(id);
         if(carO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Car not found.");
         }
-        Car updatedCar = carRepository.getReferenceById(id);
+        Car updatedCar = carO.get();
+        BeanUtils.copyProperties(carDTO, updatedCar);
         return ResponseEntity.status(HttpStatus.OK).body(carRepository.save(updatedCar));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteCar(@PathVariable(value = "id") UUID id) {
+    public ResponseEntity deleteCar(@PathVariable(value = "id") String id) {
         Optional<Car> carO = carRepository.findById(id);
         if(carO.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Car not found.");
