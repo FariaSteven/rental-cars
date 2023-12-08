@@ -3,6 +3,8 @@ package com.rentalCars.rentalCars.controllers;
 import com.rentalCars.rentalCars.domain.cars.Car;
 import com.rentalCars.rentalCars.domain.cars.dto.CarDTO;
 import com.rentalCars.rentalCars.repositories.CarRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/cars")
+@SecurityRequirement(name = "bearer-key")
 public class CarController {
     @Autowired
     CarRepository carRepository;
