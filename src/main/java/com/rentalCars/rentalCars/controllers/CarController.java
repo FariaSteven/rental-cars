@@ -8,6 +8,10 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +28,9 @@ public class CarController {
     CarRepository carRepository;
 
     @GetMapping
-    public ResponseEntity<List<Car>> getAllCars() {
-        List<Car> carList = carRepository.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(carList);
+    public ResponseEntity<Page<Car>> getAllCars(@PageableDefault(size = 10) Pageable pagination) {
+        var page = carRepository.findAll(pagination);
+        return ResponseEntity.ok(page);
     }
 
     @PostMapping
