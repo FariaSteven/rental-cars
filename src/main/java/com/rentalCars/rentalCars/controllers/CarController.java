@@ -29,6 +29,7 @@ public class CarController {
     @PostMapping
     public ResponseEntity<Car> addCar(@RequestBody @Valid CarDTO carDTO) {
         Car newCar = new Car(carDTO);
+        System.out.println(carDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(carRepository.save(newCar));
     }
 

@@ -20,18 +20,18 @@ public class Car {
     private String model;
     private String color;
     private String engine;
-    private Number doors;
+    private String doors;
     private String gearbox;
     private String fuel;
     private String dimensions;
-    private Number trunk;
+    private String trunk;
     private String avgConsumptionCity;
     private String avgConsumptionRoad;
-    private Number power;
+    private String power;
     private Boolean isRented;
     private String rentedBy;
     private BigDecimal price;
-    private Number airbag;
+    private String airbag;
     private String brake;
 
     public Car(CarDTO carDTO) {

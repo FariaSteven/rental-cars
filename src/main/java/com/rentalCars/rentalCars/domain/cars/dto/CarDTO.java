@@ -13,28 +13,28 @@ public record CarDTO(
          @NotBlank
          String engine,
          @NotNull
-         Number doors,
+         String doors,
          @NotBlank
          String gearbox,
          @NotBlank
          String fuel,
          @NotBlank
          String dimensions,
-         @NotNull
-         Number trunk,
-         @NotNull
+         @NotBlank
+         String trunk,
+         @NotBlank
          String avgConsumptionCity,
-         @NotNull
+         @NotBlank
          String avgConsumptionRoad,
-         @NotNull
-         Number power,
+         @NotBlank
+         String power,
          Boolean isRented,
          @NotBlank
          String rentedBy,
          @NotNull
          BigDecimal price,
-         @NotNull
-         Number airbag,
+         @NotBlank
+         String airbag,
          @NotBlank
          String brake
 ) {
