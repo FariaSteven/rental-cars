@@ -32,7 +32,7 @@ public record CarDTO(
          @NotBlank
          String rentedBy,
          @NotNull
-         BigDecimal price,
+         Double price,
          @NotBlank
          String airbag,
          @NotBlank

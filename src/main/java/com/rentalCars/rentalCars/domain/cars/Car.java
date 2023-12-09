@@ -30,7 +30,7 @@ public class Car {
     private String power;
     private Boolean isRented;
     private String rentedBy;
-    private BigDecimal price;
+    private Double price;
     private String airbag;
     private String brake;
 
